@@ -1,32 +1,15 @@
 package main
 
 import (
-	"bufio"
 	"fmt"
-	"os"
-	"strconv"
+
+	utils "AoC_Golang/myutils"
 )
 
 func main() {
 	filePath := "input.txt"
 
-	// read the whole content of file and pass it to file variable, in case of error pass it to err variable
-	file, err := os.Open(filePath)
-	if err != nil {
-		fmt.Printf("Could not open the file due to this %s error \n", err)
-	}
-	fileScanner := bufio.NewScanner(file)
-	fileScanner.Split(bufio.ScanLines)
-
-	var listIntegers []int
-
-	for fileScanner.Scan() {
-		i, _ := strconv.Atoi(fileScanner.Text())
-		listIntegers = append(listIntegers, i)
-	}
-	if err = file.Close(); err != nil {
-		fmt.Printf("Could not close the file due to this %s error \n", err)
-	}
+	listIntegers := utils.ReadIntegers(filePath)
 
 	current := listIntegers[0]
 	total := 0
@@ -38,5 +21,19 @@ func main() {
 		current = n
 	}
 
-	fmt.Println(total) // part 1
+	fmt.Printf("Part 1: %d\n", total) // part 1
+
+	listIntegers = utils.ReadIntegers("input2.txt")
+	current = listIntegers[0] + listIntegers[1] + listIntegers[2]
+	total = 0
+
+	for i := 0; i < len(listIntegers)-3; i++ {
+		if current < listIntegers[i+1]+listIntegers[i+2]+listIntegers[i+3] {
+			total += 1
+		}
+		current = listIntegers[i+1] + listIntegers[i+2] + listIntegers[i+3]
+	}
+
+	fmt.Printf("Part 2: %d\n", total) // part 2
+
 }

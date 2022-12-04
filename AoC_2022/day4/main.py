@@ -30,3 +30,6 @@ for line in lines:
         part2 += 1
 
 print(part1, part2)
+
+
+print(sum(1 for string in open("input.txt", "r").read().split('\n') if ((int(string.split(',')[0].split('-')[0]) >= int(string.split(',')[1].split('-')[0]) and int(string.split(',')[0].split('-')[1]) <= int(string.split(',')[1].split('-')[1])) or (int(string.split(',')[1].split('-')[0]) >= int(string.split(',')[0].split('-')[0]) and int(string.split(',')[1].split('-')[1]) <= int(string.split(',')[0].split('-')[1])))))

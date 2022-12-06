@@ -18,7 +18,6 @@ func hasRepeating(s string) bool {
 		for _, c2 := range s {
 			if c2 == c {
 				count++
-
 			}
 		}
 		if count > 1 {

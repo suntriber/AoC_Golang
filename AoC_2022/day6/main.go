@@ -8,8 +8,8 @@ import (
 func main() {
 	fmt.Println("Welcome to day 6")
 	data := utils.ReadStrings(("input.txt"))[0]
-	part1(data)
-	part2(data)
+	part1And2(data, 1)
+	part1And2(data, 2)
 }
 
 func hasRepeating(s string) bool {
@@ -28,25 +28,19 @@ func hasRepeating(s string) bool {
 	return false
 }
 
-func part1(data string) {
-	s := data[:4]
-	for i := 4; i < len(data); i++ {
-		s += string(data[i])
-		s = s[1:]
-		if !hasRepeating(s) {
-			fmt.Printf("Part 1 : %d\n", i+1)
-			break
-		}
+func part1And2(data string, part int) {
+	j := 0
+	if part == 1 {
+		j = 4
+	} else if part == 2 {
+		j = 14
 	}
-}
-
-func part2(data string) {
-	s := data[:14]
-	for i := 14; i < len(data); i++ {
+	s := data[:j]
+	for i := j; i < len(data); i++ {
 		s += string(data[i])
 		s = s[1:]
 		if !hasRepeating(s) {
-			fmt.Printf("Part 2 : %d\n", i+1)
+			fmt.Printf("Part %d : %d\n", part, i+1)
 			break
 		}
 	}

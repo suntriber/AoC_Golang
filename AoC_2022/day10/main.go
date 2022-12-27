@@ -1,7 +1,8 @@
 package main
-    
+
 import "fmt"
-    
+
 func main() {
-    fmt.Println("Welcome to day {i}")
+	fmt.Println("Welcome to day {i}")
+
 }

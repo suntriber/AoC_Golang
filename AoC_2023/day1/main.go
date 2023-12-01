@@ -35,7 +35,6 @@ func main() {
 	fmt.Printf("Part 1: %d\n", sum) // part 1
 
 	sum2 := 0
-
 	nums := map[string]string{"one": "1", "two": "2", "three": "3", "four": "4", "five": "5", "six": "6", "seven": "7", "eight": "8", "nine": "9", "zero": "0"}
 
 	for i := 0; i < len(input); i++ {
@@ -75,10 +74,8 @@ func main() {
 				break
 			}
 		}
-
 		n, _ := strconv.Atoi(tmp)
 		sum2 += n
-
 	}
 
 	fmt.Printf("Part 2: %d\n", sum2)

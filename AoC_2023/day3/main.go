@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	input := myutils.ReadStrings("input.txt")
+	input := myutils.ReadStrings("test.txt")
 	fmt.Println(input[0])
 	part1(input)
 }

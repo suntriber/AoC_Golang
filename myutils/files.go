@@ -13,6 +13,7 @@ func Check(e error) {
 	}
 }
 
+// ReadIntegers reads the whole content of a file and returns it as slice of integers
 func ReadIntegers(path string) []int {
 	// read the whole content of file and pass it to file variable, in case of error pass it to err variable
 	file, err := os.Open(path)
@@ -36,8 +37,8 @@ func ReadIntegers(path string) []int {
 	return listIntegers
 }
 
+// ReadStrings reads the whole content of a file and returns it as a slice of strings
 func ReadStrings(path string) []string {
-	// read the whole content of file and pass it to file variable, in case of error pass it to err variable
 	file, err := os.Open(path)
 	Check(err)
 	if err != nil {

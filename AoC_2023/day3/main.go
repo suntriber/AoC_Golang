@@ -11,13 +11,6 @@ func main() {
 	input := myutils.ReadStrings("input.txt")
 	fmt.Printf("Part1: %d\n", part1(input))
 	fmt.Printf("Part2: %d\n", part2(input))
-	// fmt.Println(getNumber(input, 7, 11))
-	// fmt.Println(getNumber(input, 8, 11))
-	// fmt.Println(getNumber(input, 9, 11))
-	// fmt.Println(getNumber(input, 7, 12))
-	// fmt.Println(getNumber(input, 8, 12))
-	// fmt.Println(getNumber(input, 9, 12))
-	// fmt.Println(findAdjacentNumbers(input, []GearNumbers{{XIndexOfStar: 6, YIndexOfStar: 12}}))
 }
 
 func part1(input []string) int {

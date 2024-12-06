@@ -26,6 +26,22 @@ func ReadStrings(f string) ([]string, error) {
 	return strings.Split(dataStr, "\n"), nil
 }
 
+// ReadStrings2D take a path to a file and returns a 2-dimensional slice of runes
+func ReadStrings2D(f string) ([][]rune, error) {
+	data, err := os.ReadFile(f)
+	if err != nil {
+		return nil, err
+	}
+	dataStr := string(data)
+	dataStrList := strings.Split(dataStr, "\n")
+	data2D := make([][]rune, len(dataStrList))
+
+	for i, s := range dataStrList {
+		data2D[i] = []rune(s)
+	}
+	return data2D, nil
+}
+
 // StringListToIntList take a list of strings and returns a list of ints
 func StringListToIntList(s []string) ([]int, error) {
 	intList := []int{}

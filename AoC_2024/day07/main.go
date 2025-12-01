@@ -1,30 +1,44 @@
 package main
 
 import (
+	"AoC_Golang/AoC_2024/helpers"
 	"fmt"
 	"strconv"
+	"strings"
 )
 
-func generatePermutations(slice []string) [][]string {
-	if len(slice) == 1 {
-		return [][]string{slice}
+func main() {
+	fmt.Println("day 7..")
+	data, err := helpers.ReadStrings("test.txt")
+	if err != nil {
+		panic(err)
 	}
 
-	var result [][]string
-	for i, str := range slice {
-		// Create a new slice excluding the current element
-		rest := make([]string, 0)
-		rest = append(rest, slice[:i]...)
-		rest = append(rest, slice[i+1:]...)
+	sum1 := 0
 
-		// Generate permutations of the rest
-		subPermutations := generatePermutations(rest)
-		for _, subPerm := range subPermutations {
-			perm := append([]string{str}, subPerm...)
-			result = append(result, perm)
+	for _, l := range data {
+		parts := strings.Split(l, ":")
+		targetValue, _ := strconv.Atoi(parts[0])
+		nums, err := helpers.StringsToInts(parts[1], " ")
+		if err != nil {
+			panic(err)
+		}
+		tmp := make([]string, 0)
+		generateExpressions(nums, 0, "+", &tmp)
+		fmt.Println(targetValue, " : ", tmp)
+		for _, ex := range tmp {
+			val, err := calculateExpression(ex)
+			if err != nil {
+				panic(err)
+			}
+			fmt.Println("val: ", val)
+			if val == targetValue {
+				sum1 += val
+				fmt.Printf("Expression: %s\n", ex)
+			}
 		}
 	}
-	return result
+	fmt.Printf("Part1: %d\n", sum1)
 }
 
 func generateExpressions(nums []int, index int, currentExpr string, results *[]string) {
@@ -44,6 +58,7 @@ func generateExpressions(nums []int, index int, currentExpr string, results *[]s
 		generateExpressions(nums, index+1, currentExpr+"*"+strconv.Itoa(nums[index]), results)
 	}
 }
+
 func calculateExpression(expr string) (int, error) {
 	sum := 0
 
@@ -100,29 +115,4 @@ func calculateExpression(expr string) (int, error) {
 	}
 
 	return sum, nil
-}
-
-func main() {
-	slice := []string{"a", "b", "c"}
-	permutations := generatePermutations(slice)
-	for _, perm := range permutations {
-		fmt.Println(perm)
-	}
-
-	nums := []int{1, 2, 3}
-	var results []string
-
-	generateExpressions(nums, 0, "", &results)
-
-	for _, expr := range results {
-		fmt.Println(expr)
-	}
-
-	expr := "11+6*16+20"
-	result, err := calculateExpression(expr)
-	if err != nil {
-		fmt.Println("Error:", err)
-		return
-	}
-	fmt.Println("Result:", result) // Output: Result: 292
 }
